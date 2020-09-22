@@ -18,7 +18,7 @@
 
 - date **(Required)** : Can be `string, number or Date Object`
 
-  - string : "Fri Sep 18 2020 10:20:30 GMT+0700 (ICT)"
+  - String : "Fri Sep 18 2020 10:20:30 GMT+0700 (ICT)"
   - Datetime Object : `new Date(2020, 11, 25, 10, 20, 30);`
   - Date : "2020-07-09" (YYYY-MM-dd)
 
@@ -28,14 +28,14 @@
   - Datetime : `PPP HH:mm:ss` by default
 
     - September 18th, 2020 10:20:30
-    - "8 กันยายน 2563 10:20:30;
+    - 8 กันยายน 2563 10:20:30;
 
   - Date : `PPP` by default
 
     - July 9th, 2020
     - 9 กรกฎาคม 2563
 
-  - **Other** https://date-fns.org/docs/format
+  - **Other** : https://date-fns.org/docs/format
 
 #### Example
 
