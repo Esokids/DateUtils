@@ -6,7 +6,8 @@
   "scripts": {
     "tsc": "tsc",
     "dev": "tsc date.ts && node date.js",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run --browser chrome",
+    "cy:open": "./node_modules/.bin/cypress open"
   },
   "dependencies": {
     "date-fns": "^2.16.1",
