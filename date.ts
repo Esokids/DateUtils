@@ -8,11 +8,7 @@ let defaultDatetimeFormat: string = "PPP HH:mm:ss";
 let defaultDateFormat: string = "PPP";
 let defaultLocale: string = "enUS";
 
-const dateToHuman = (
-  date: TypeInputDate,
-  locale: string = defaultLocale,
-  dateFormat?: string
-): string => {
+const dateToHuman = (date: TypeInputDate, locale: string = defaultLocale, dateFormat?: string): string => {
   try {
     let _locale = convertString2Locale(locale);
     let flagDateNoTimeFormat: boolean = false;
@@ -30,27 +26,14 @@ const dateToHuman = (
   }
 };
 
-const universalFormat = (
-  flagDateNoTimeFormat: boolean,
-  date: TypeDate,
-  locale: Locale,
-  dateFormat?: string
-): string => {
+const universalFormat = (flagDateNoTimeFormat: boolean, date: TypeDate, locale: Locale, dateFormat?: string): string => {
   if (flagDateNoTimeFormat) return dateNoTimeFormat(date, locale, dateFormat);
   else return datetimeFormat(date, locale, dateFormat);
 };
 
-const datetimeFormat = (
-  date: TypeDate,
-  locale: Locale,
-  _format: string = defaultDatetimeFormat
-): string => format(date, _format, { locale });
+const datetimeFormat = (date: TypeDate, locale: Locale, _format: string = defaultDatetimeFormat): string => format(date, _format, { locale });
 
-const dateNoTimeFormat = (
-  date: TypeDate,
-  locale: Locale,
-  _format: string = defaultDateFormat
-): string => format(date, _format, { locale });
+const dateNoTimeFormat = (date: TypeDate, locale: Locale, _format: string = defaultDateFormat): string => format(date, _format, { locale });
 
 const toBuddhistYear = (date: TypeDate): Date => addYears(date, 543);
 

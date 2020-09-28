@@ -37,6 +37,8 @@
 
   - **Other** : https://date-fns.org/docs/format
 
+!! If an input equals to **null** or **Empty String** result is `"N/A"`
+
 #### Example
 
 ###### Date Object
