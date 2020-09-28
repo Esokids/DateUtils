@@ -135,3 +135,19 @@ describe("ISO Datetime", () => {
     expect(valid).to.equal(dateToHuman(date, "th", "Pp"));
   });
 });
+
+// =========================================================
+
+describe("ISO Datetime", () => {
+  it("null", () => {
+    let date = null;
+    let valid = "N/A";
+    expect(valid).to.equal(dateToHuman(date));
+  });
+
+  it("Empty String", () => {
+    let date = "";
+    let valid = "N/A";
+    expect(valid).to.equal(dateToHuman(date));
+  });
+});

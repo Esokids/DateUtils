@@ -5,17 +5,23 @@ var date_fns_1 = require("date-fns");
 var locale_1 = require("date-fns/locale");
 var defaultDatetimeFormat = "PPP HH:mm:ss";
 var defaultDateFormat = "PPP";
+var defaultLocale = "enUS";
 var dateToHuman = function (date, locale, dateFormat) {
-    if (locale === void 0) { locale = "enUS"; }
-    var _locale = convertString2Locale(locale);
-    var flagDateNoTimeFormat = false;
-    if (typeof date === "string") {
-        flagDateNoTimeFormat = checkDateNoTimeFormat(date);
-        date = Date.parse(date);
+    if (locale === void 0) { locale = defaultLocale; }
+    try {
+        var _locale = convertString2Locale(locale);
+        var flagDateNoTimeFormat = false;
+        if (typeof date === "string") {
+            flagDateNoTimeFormat = checkDateNoTimeFormat(date);
+            date = Date.parse(date);
+        }
+        if (locale === "th")
+            date = toBuddhistYear(date);
+        return universalFormat(flagDateNoTimeFormat, date, _locale, dateFormat);
     }
-    if (locale === "th")
-        date = toBuddhistYear(date);
-    return universalFormat(flagDateNoTimeFormat, date, _locale, dateFormat);
+    catch (error) {
+        return "N/A";
+    }
 };
 exports.dateToHuman = dateToHuman;
 var universalFormat = function (flagDateNoTimeFormat, date, locale, dateFormat) {
@@ -48,7 +54,5 @@ var convertString2Locale = function (locale) {
     else
         return locale_1.enUS;
 };
-var date = new Date(2020, 11, 25, 10, 20, 30);
-var valid = "12/25/2020, 10:20 AM";
-console.log(date, "\n", valid);
-console.log(dateToHuman(date, undefined, "P"));
+var date = "";
+console.log(dateToHuman(date));
