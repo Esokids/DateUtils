@@ -50,6 +50,3 @@ const convertString2Locale = (locale: string): Locale => {
 };
 
 export { dateToHuman };
-
-let date = "";
-console.log(dateToHuman(date));
