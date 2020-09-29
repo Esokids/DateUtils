@@ -4,11 +4,15 @@ import { enUS, th } from "date-fns/locale";
 type TypeInputDate = Date | number | string;
 type TypeDate = Date | number;
 
-let defaultDatetimeFormat: string = "PPP HH:mm:ss";
-let defaultDateFormat: string = "PPP";
-let defaultLocale: string = "enUS";
+let DEFAULT_DATETIMEFORMAT: string = "PPP HH:mm:ss";
+let DEFAULT_DATEFORMAT: string = "PPP";
+let DEFAULT_LOCALE: string = "enUS";
 
-const dateToHuman = (date: TypeInputDate, locale: string = defaultLocale, dateFormat?: string): string => {
+const dateToHuman = (
+  date: TypeInputDate,
+  locale: string = DEFAULT_LOCALE,
+  dateFormat?: string
+): string => {
   try {
     let _locale = convertString2Locale(locale);
     let flagDateNoTimeFormat: boolean = false;
@@ -26,14 +30,27 @@ const dateToHuman = (date: TypeInputDate, locale: string = defaultLocale, dateFo
   }
 };
 
-const universalFormat = (flagDateNoTimeFormat: boolean, date: TypeDate, locale: Locale, dateFormat?: string): string => {
+const universalFormat = (
+  flagDateNoTimeFormat: boolean,
+  date: TypeDate,
+  locale: Locale,
+  dateFormat?: string
+): string => {
   if (flagDateNoTimeFormat) return dateNoTimeFormat(date, locale, dateFormat);
   else return datetimeFormat(date, locale, dateFormat);
 };
 
-const datetimeFormat = (date: TypeDate, locale: Locale, _format: string = defaultDatetimeFormat): string => format(date, _format, { locale });
+const datetimeFormat = (
+  date: TypeDate,
+  locale: Locale,
+  _format: string = DEFAULT_DATETIMEFORMAT
+): string => format(date, _format, { locale });
 
-const dateNoTimeFormat = (date: TypeDate, locale: Locale, _format: string = defaultDateFormat): string => format(date, _format, { locale });
+const dateNoTimeFormat = (
+  date: TypeDate,
+  locale: Locale,
+  _format: string = DEFAULT_DATEFORMAT
+): string => format(date, _format, { locale });
 
 const toBuddhistYear = (date: TypeDate): Date => addYears(date, 543);
 
