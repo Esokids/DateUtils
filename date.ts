@@ -4,9 +4,9 @@ import { enUS, th } from "date-fns/locale";
 type TypeInputDate = Date | number | string;
 type TypeDate = Date | number;
 
-let DEFAULT_DATETIMEFORMAT: string = "PPP HH:mm:ss";
-let DEFAULT_DATEFORMAT: string = "PPP";
-let DEFAULT_LOCALE: string = "enUS";
+const DEFAULT_DATETIMEFORMAT: string = "PPP HH:mm:ss";
+const DEFAULT_DATEFORMAT: string = "PPP";
+const DEFAULT_LOCALE: string = "enUS";
 
 const dateToHuman = (
   date: TypeInputDate,
