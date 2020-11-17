@@ -1,56 +1,37 @@
-import { addYears, format } from "date-fns";
-import { enUS, th } from "date-fns/locale";
+import { addYears, format } from 'date-fns';
+import { enUS, th } from 'date-fns/locale';
 
 type TypeInputDate = Date | number | string;
 type TypeDate = Date | number;
 
-const DEFAULT_DATETIMEFORMAT: string = "PPP HH:mm:ss";
-const DEFAULT_DATEFORMAT: string = "PPP";
-const DEFAULT_LOCALE: string = "enUS";
+const DEFAULT_DATETIMEFORMAT: string = 'PPP HH:mm:ss';
+const DEFAULT_DATEFORMAT: string = 'PPP';
+const DEFAULT_LOCALE: string = 'enUS';
 
-const dateToHuman = (
-  date: TypeInputDate,
-  locale: string = DEFAULT_LOCALE,
-  dateFormat?: string
-): string => {
+const dateToHuman = (date: TypeInputDate, locale: string = DEFAULT_LOCALE, dateFormat?: string): string => {
   try {
     let _locale = convertString2Locale(locale);
     let flagDateNoTimeFormat: boolean = false;
 
-    if (typeof date === "string") {
+    if (typeof date === 'string') {
       flagDateNoTimeFormat = checkDateNoTimeFormat(date);
       date = Date.parse(date);
     }
 
-    if (locale === "th") date = toBuddhistYear(date);
+    if (locale === 'th') date = toBuddhistYear(date);
 
     return universalFormat(flagDateNoTimeFormat, date, _locale, dateFormat);
   } catch (error) {
-    return "N/A";
+    return 'N/A';
   }
 };
 
-const universalFormat = (
-  flagDateNoTimeFormat: boolean,
-  date: TypeDate,
-  locale: Locale,
-  dateFormat?: string
-): string => {
-  if (flagDateNoTimeFormat) return dateNoTimeFormat(date, locale, dateFormat);
-  else return datetimeFormat(date, locale, dateFormat);
+const universalFormat = (flagDateNoTimeFormat: boolean, date: TypeDate, locale: Locale, dateFormat?: string): string => {
+  if (flagDateNoTimeFormat) return dateTimeFormat(date, locale, dateFormat ? dateFormat : DEFAULT_DATEFORMAT);
+  else return dateTimeFormat(date, locale, dateFormat ? dateFormat : DEFAULT_DATETIMEFORMAT);
 };
 
-const datetimeFormat = (
-  date: TypeDate,
-  locale: Locale,
-  _format: string = DEFAULT_DATETIMEFORMAT
-): string => format(date, _format, { locale });
-
-const dateNoTimeFormat = (
-  date: TypeDate,
-  locale: Locale,
-  _format: string = DEFAULT_DATEFORMAT
-): string => format(date, _format, { locale });
+const dateTimeFormat = (date: TypeDate, locale: Locale, _format: string): string => format(date, _format, { locale });
 
 const toBuddhistYear = (date: TypeDate): Date => addYears(date, 543);
 
@@ -61,8 +42,8 @@ const checkDateNoTimeFormat = (date: string): boolean => {
 };
 
 const convertString2Locale = (locale: string): Locale => {
-  if (locale === "th") return th;
-  if (locale === "enUS" || "en") return enUS;
+  if (locale === 'th') return th;
+  if (locale === 'enUS' || 'en') return enUS;
   else return enUS;
 };
 

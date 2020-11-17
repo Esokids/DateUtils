@@ -97,3 +97,17 @@
     let result = dateToHuman(date, undefined, "P")
     console.log(result) // 07/09/2020
 ```
+
+###### Custom Date Result Format
+
+```
+    let date = "2020-09-21T01:13:45.906Z";
+    let result = dateToHuman(date, 'en', "PPP")
+    console.log(result) // September 21st, 2020
+```
+
+```
+    let date = "2020-09-21T01:13:45.906Z";
+    let result = dateToHuman(date, 'th', "PPP")
+    console.log(result) // 21 กันยายน 2563
+```
